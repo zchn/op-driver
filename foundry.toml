@@ -9,7 +9,10 @@ via_ir = true
 broadcast = 'records'
 
 remappings = [
+  '@openzeppelin/contracts-upgradeable/=lib/optimism/packages/contracts-bedrock/lib/openzeppelin-contracts-upgradeable/contracts/',
   '@eth-optimism-bedrock/=lib/optimism/packages/contracts-bedrock/',
+  '@rari-capital/solmate/=lib/solmate',
+  '@solady=lib/optimism/packages/contracts-bedrock/lib/solady/src',
 ]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
