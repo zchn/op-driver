@@ -12,6 +12,6 @@ contract OpDriverTest is Test {
     }
 
     function test_Run() public {
-        driver.run();
+        driver.run(0xeffE2C6cA9Ab797D418f0D91eA60807713f3536f);
     }
 }

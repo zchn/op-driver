@@ -1,19 +1,24 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.15;
 
-import {L1CrossDomainMessenger} from "@eth-optimism-bedrock/src/L1/L1CrossDomainMessenger.sol";
-import {CrossDomainMessenger} from "@eth-optimism-bedrock/src/universal/CrossDomainMessenger.sol";
+import {OptimismPortal} from "@eth-optimism-bedrock/src/L1/OptimismPortal.sol";
+import {L2ToL1MessagePasser} from "@eth-optimism-bedrock/src/L2/L2ToL1MessagePasser.sol";
 
 contract OpDriver {
-    function run() public {
+    address constant l2ToL1MessagePasserAddr = 0x4200000000000000000000000000000000000016;
+
+    function run(address optimismPortalAddr) public {
         // OP Sepolia
-        L1CrossDomainMessenger l1CrossDomainMessenger = L1CrossDomainMessenger(0x58Cc85b8D04EA49cC6DBd3CbFFd00B4B8D6cb3ef);
-        l1CrossDomainMessenger.sendMessage(
-            // L2CrossDomainMessenger
-            0x4200000000000000000000000000000000000007,
-            abi.encodeCall(CrossDomainMessenger.sendMessage,
-                           (address(this), abi.encodeCall(this.run, ()), 100)),
-            100
+        OptimismPortal portal = OptimismPortal(payable(optimismPortalAddr));
+        portal.depositTransaction(
+            // L2ToL1MessagePasser
+            /* _to  */ l2ToL1MessagePasserAddr,
+            /* _value */ 0,
+            /* _gasLimit  */ 287725,
+            /* _isCreation */ false,
+            /* _data */
+            abi.encodeCall(L2ToL1MessagePasser.initiateWithdrawal,
+                           (address(this), 100, abi.encodeCall(this.run, (optimismPortalAddr))))
         );
     }
 }
