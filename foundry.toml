@@ -16,4 +16,11 @@ remappings = [
   '@solady=lib/optimism/packages/contracts-bedrock/lib/solady/src',
 ]
 
+[etherscan]
+mainnet = { key = "${ETHERSCAN_API_KEY}" }
+mainnet2 = { key = "ABCDEFG", chain = "mainnet" }
+sepolia = { key = "${ETHERSCAN_API_KEY}" }
+optimism = { key = "1234567" }
+unknown_chain = { key = "ABCDEFG", url = "<etherscan api url for this chain>" }
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
