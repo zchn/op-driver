@@ -10,6 +10,7 @@ broadcast = 'records'
 
 remappings = [
   '@openzeppelin/contracts-upgradeable/=lib/optimism/packages/contracts-bedrock/lib/openzeppelin-contracts-upgradeable/contracts/',
+  '@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts',
   '@eth-optimism-bedrock/=lib/optimism/packages/contracts-bedrock/',
   '@rari-capital/solmate/=lib/solmate',
   '@solady=lib/optimism/packages/contracts-bedrock/lib/solady/src',
